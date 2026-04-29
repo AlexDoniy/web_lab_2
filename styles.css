@@ -1,0 +1,32 @@
+body {
+    font-family: 'Corbel', sans-serif;
+    background-color: #ffe4e1;
+}
+.container {
+    max-width: 600px;
+    margin-top: 50px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.navbar {
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    margin: 10px auto;
+    max-width: 900px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-left: 10px; 
+}
