@@ -1,7 +1,4 @@
-/**
- * AUTH CONTROLLER — відповідає за логіку авторизації.
- * Взаємодіє з localStorage та View для оновлення navbar.
- */
+
 class AuthController {
     constructor(view) {
         this.view = view;
@@ -11,10 +8,7 @@ class AuthController {
         return localStorage.getItem('isLoggedIn') === 'true';
     }
 
-    /**
-     * Перевіряє email і пароль проти збереженого користувача.
-     * Повертає true при успіху, false — якщо акаунт не знайдено.
-     */
+
     tryLogin(email, password) {
         const user = JSON.parse(localStorage.getItem('user') || 'null');
         if (!user || user.email !== email || user.password !== password) {
@@ -25,10 +19,7 @@ class AuthController {
         return true;
     }
 
-    /**
-     * Реєструє нового користувача.
-     * Повертає false, якщо акаунт з таким email вже існує.
-     */
+
     register(name, email, password) {
         const existing = JSON.parse(localStorage.getItem('user') || 'null');
         if (existing && existing.email === email) {
@@ -47,10 +38,6 @@ class AuthController {
     }
 }
 
-/**
- * SESSION CONTROLLER — головний контролер.
- * З'єднує Model і View, обробляє події таймера.
- */
 class SessionController {
     constructor(model, view, auth) {
         this.model    = model;
@@ -68,17 +55,14 @@ class SessionController {
     }
 
     _init() {
-        // Ініціалізація navbar та списку сесій
         this.view.updateNavbar(this.auth.isLoggedIn());
         this.view.renderSessions(this.model.getSessions());
 
-        // Прив'язка кнопок таймера
         this.view.btnStart.addEventListener('click', () => this.start());
         this.view.btnPause.addEventListener('click', () => this.pauseResume());
         this.view.btnStop.addEventListener('click',  () => this.stop());
         this.view.btnSave.addEventListener('click',  () => this.saveSession());
 
-        // Кнопка виходу
         const logoutBtn = document.getElementById('logout-btn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', e => {
@@ -88,7 +72,6 @@ class SessionController {
         }
     }
 
-    /** Запускає таймер (ігнорує повторний виклик, якщо вже запущений) */
     start() {
         if (this.timer) return;
 
@@ -105,7 +88,6 @@ class SessionController {
         }, 1000);
     }
 
-    /** Пауза / Продовження (ігнорує виклик, якщо таймер не запущений) */
     pauseResume() {
         if (!this.startTime) return;
 
@@ -122,7 +104,6 @@ class SessionController {
         }
     }
 
-    /** Зупиняє таймер і фіксує час закінчення */
     stop() {
         if (!this.startTime) return;
 
@@ -131,11 +112,9 @@ class SessionController {
         this.isPaused = false;
         this.endTime  = new Date();
 
-        // Показує фінальний час без скидання до нуля
         this.view.updateTimer(this._formatTime(this.elapsed));
     }
 
-    /** Зберігає поточну сесію у модель та оновлює список */
     saveSession() {
         if (!this.startTime || !this.endTime) {
             this.view.showMessage('Спочатку запустіть та зупиніть таймер!', 'warning');
@@ -154,7 +133,6 @@ class SessionController {
         this.view.renderSessions(this.model.getSessions());
         this.view.showMessage(`Сеанс "${name}" збережено!`);
 
-        // Скидаємо стан після збереження
         this.view.clearNameInput();
         this.view.updateTimer('00:00:00');
         this.elapsed   = 0;
@@ -162,7 +140,6 @@ class SessionController {
         this.endTime   = null;
     }
 
-    /** Форматує секунди у рядок ГГ:ХХ:СС */
     _formatTime(sec) {
         const h = Math.floor(sec / 3600);
         const m = Math.floor((sec % 3600) / 60);
@@ -174,7 +151,6 @@ class SessionController {
         ].join(':');
     }
 
-    /** Форматує об'єкт Date у рядок ГГ:ХХ */
     _formatClock(date) {
         return [
             String(date.getHours()).padStart(2, '0'),

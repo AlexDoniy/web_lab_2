@@ -1,7 +1,4 @@
-/**
- * MODEL — відповідає за зберігання та управління даними сесій.
- * Не знає нічого про DOM або логіку таймера.
- */
+
 class SessionModel {
     constructor() {
         this.sessions = JSON.parse(localStorage.getItem('sessions')) || [];

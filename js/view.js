@@ -1,7 +1,4 @@
-/**
- * VIEW — відповідає за відображення даних у DOM.
- * Не містить бізнес-логіки. Отримує дані від контролера.
- */
+
 class SessionView {
     constructor() {
         this.timerDisplay = document.getElementById('timer-display');
@@ -13,12 +10,10 @@ class SessionView {
         this.btnSave      = document.querySelector('button.btn-primary');
     }
 
-    /** Оновлює відображення таймера */
     updateTimer(timeText) {
         this.timerDisplay.textContent = timeText;
     }
 
-    /** Перерендерує список збережених сесій */
     renderSessions(sessions) {
         this.historyList.innerHTML = '';
         sessions.forEach((s, i) => {
@@ -32,12 +27,10 @@ class SessionView {
         });
     }
 
-    /** Очищує поле введення назви сесії */
     clearNameInput() {
         this.nameInput.value = '';
     }
 
-    /** Показує повідомлення у вигляді тосту */
     showMessage(text, type = 'success') {
         const toast = document.createElement('div');
         toast.className = `alert alert-${type} position-fixed bottom-0 end-0 m-3`;
@@ -47,7 +40,6 @@ class SessionView {
         setTimeout(() => toast.remove(), 2500);
     }
 
-    /** Оновлює навігаційну панель залежно від стану авторизації */
     updateNavbar(isLoggedIn) {
         const guestItems = document.querySelectorAll('[data-guest]');
         const authItems  = document.querySelectorAll('[data-auth]');
