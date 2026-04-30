@@ -1,3 +1,3 @@
 Лабораторна робота №2 "Розробка статичного інтерфейсу Web-додатка" Виконаd: студент групи КВ-32 Доній Олександр
 Завдання: Розробити статичні Web-сторінки додатку та перевірити коректне їх відображення на екранах різного розміру.
-[Звіт](https://docs.google.com/document/d/1U1grQAbLU8ip4bsNekJTm3AXObkNC0A2tFjnXtLJkmo/edit?usp=sharing)
+[Звіт](https://docs.google.com/document/d/154qddDbNowF9z0nIAfylkaBTBHaZYxGGHWmD7jA8Vog/edit?usp=sharing)
